@@ -25,7 +25,7 @@ namespace Travel_Library.Controllers
             ClaimsPrincipal claimUsuario = HttpContext.User;
             string nombreUsuario = "";
 
-            //si el usuario esta autenticado
+            //si el usuario esta autenticado capturar el correo y mostarlo en la vista Index del Home una vez inciado sesion
             if(claimUsuario.Identity.IsAuthenticated)
             {
                 nombreUsuario = claimUsuario.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
@@ -43,7 +43,7 @@ namespace Travel_Library.Controllers
 
         public async Task<IActionResult> CerrarSesion()
         {
-            //Eliminar la Autenticacion de usuario
+            //Eliminar la Autenticacion de usuario al cerrar sesión
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             return RedirectToAction("IniciarSesion", "Inicio");

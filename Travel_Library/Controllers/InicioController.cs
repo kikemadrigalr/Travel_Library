@@ -30,7 +30,7 @@ namespace Travel_Library.Controllers
         {
             Usuario usuario_encontrado = await _usuarioServicio.GetUsuario(correo, Utilidades.EncriptarPassword(contrasena));
 
-            //si no se encuentra el usuario
+            //si no se encuentra el usuario enviar mensaje de error
             if(usuario_encontrado == null)
             {
                 ViewData["Mensaje"] = "No se encontró el Usuario";

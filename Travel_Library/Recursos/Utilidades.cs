@@ -5,7 +5,7 @@ namespace Travel_Library.Recursos
 {
     public class Utilidades
     {
-        //Clase para encriptar la contraseñas
+        //Clase para encriptar la contraseñas a formato SHA256 para el inicio de sesión
         public static string EncriptarPassword(string password)
         {
             StringBuilder sb = new StringBuilder();

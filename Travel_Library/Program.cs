@@ -29,7 +29,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
     });
 
-//Desabilitar cache
+//Desabilitar cache al cerrar sesion 
 builder.Services.AddControllersWithViews(options =>
 {
     options.Filters.Add(
