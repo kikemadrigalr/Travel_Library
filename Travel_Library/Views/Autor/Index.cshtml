@@ -1,0 +1,47 @@
+﻿@model List<Autor>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Lista de Autores </h1>
+</div>
+<hr />
+
+<div class="card">
+    <div class="card-header">
+        <h5>Listado de Libros</h5>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm" asp-action="CrearAutor" asp-controller="Autor">Crear Nuevo</a>
+        <hr />
+
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Nombre</td>
+                        <td>@item.Apellidos</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" asp-action="AutorDetalle" asp-route-id="@item.Id">Detalle</a>
+                            <a class="btn btn-warning btn-sm" asp-action="EditarAutor" asp-route-id="@item.Id">Editar</a>
+                            <a class="btn btn-danger btn-sm" asp-action="EliminarAutor" asp-route-id="@item.Id">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

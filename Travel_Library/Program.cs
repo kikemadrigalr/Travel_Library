@@ -21,6 +21,7 @@ builder.Services.AddDbContext<TravelLibraryContext>(options =>
 //configuracion para los servicios desarrollados para el usuario para ser usado dentro de los controladores
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ILibroService, LibroService>();
+builder.Services.AddScoped<IAutorService, AutorService>();
 
 //Configurar las cookies para la autenticacion
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

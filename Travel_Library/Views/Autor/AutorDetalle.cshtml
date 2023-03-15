@@ -1,0 +1,32 @@
+﻿@model Travel_Library.Models.Autor
+
+@{
+    ViewData["Title"] = "Autor Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Detalles del Autor </h1>
+</div>
+<hr />
+
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Apellidos)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-warning" asp-action="EditarAutor" asp-route-id="@Model?.Id">Editar</a> |
+    <a class="btn btn-dark" asp-action="Index">Volver</a>
+</div>
