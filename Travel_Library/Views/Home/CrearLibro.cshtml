@@ -1,0 +1,41 @@
+﻿@model Libro
+@{
+    ViewData["Title"] = "CrearLibro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5 pt-5">
+    <div class="text-center">
+        <h1 class="display-4">Crear Libro</h1>
+    </div>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-6 col-xl-6 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Crear Nuevo Libro</strong>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="Home" asp-action="CrearLibro" method="post">
+                        <div class="mb-3">
+                            <label for="Titulo" class="form-label">Titulo</label>
+                            <input type="text" class="form-control" id="Titulo" placeholder="Titulo" name="Titulo" required>
+                        </div>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="Sinopsis" style="height: 100px" name="Sinopsis" required></textarea>
+                            <label for="Sinopsis">Sinopsis</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="NPaginas" class="form-label">Número de Páginas</label>
+                            <input type="text" class="form-control" id="NPaginas" name="NPaginas" required>
+                        </div>
+                        <div class="d-grid gap-2 mb-3">
+                            <button class="btn btn-primary" type="submit">Crear Libro</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

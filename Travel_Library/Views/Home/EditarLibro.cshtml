@@ -1,0 +1,47 @@
+﻿@model Libro
+@{
+    ViewData["Title"] = "Editar Libro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5 pt-5">
+    <div class="text-center">
+        <h1 class="display-4">Editar Libro</h1>
+    </div>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-6 col-xl-6 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Editar Libro</strong>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="Home" asp-action="EditarLibro" method="post">
+                        <div class="mb-3">
+                            <label for="Isbn" class="form-label">ISBN</label>
+                            <input type="text" class="form-control" id="Isbn" name="Isbn" asp-for="Isbn" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Titulo" class="form-label">Titulo</label>
+                            <input type="text" class="form-control" id="Titulo" placeholder="Titulo" name="Titulo" asp-for="Titulo">
+                        </div>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="Sinopsis" style="height: 100px" name="Sinopsis" asp-for="Sinopsis"></textarea>
+                            <label for="Sinopsis">Sinopsis</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="NPaginas" class="form-label">Número de Páginas</label>
+                            <input type="text" class="form-control" id="NPaginas" name="NPaginas" asp-for="NPaginas">
+                        </div>
+                        <input type="hidden" id="EditorialId" name="EditorialId" asp-for="EditorialId" />
+                        <div class="d-grid gap-2 mb-3">
+                            <button class="btn btn-primary" type="submit">Editar Libro</button>
+                            <a class="btn btn-warning" asp-action="Index">Volver</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

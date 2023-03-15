@@ -1,8 +1,48 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<Libro>
+@{
+    ViewData["Title"] = "Libros Registrados";
 }
 
 <div class="text-center">
     <h1 class="display-4">Bienvenido @ViewData["Usuario"] </h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Listado de Libros</h5>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm" asp-action="CrearLibro" asp-controller="Home">Crear Nuevo</a>
+        <hr />
+
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Editorial</th>
+                    <th>Titulo</th>
+                    <th>Sinopsis</th>
+                    <th>Numero Páginas</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.Isbn</td>
+                        <td>@item.Editorial</td>
+                        <td>@item.Titulo</td>
+                        <td>@item.Sinopsis</td>
+                        <td>@item.NPaginas</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" asp-action="LibroDetalle" asp-route-id="@item.Isbn">Detalle</a>
+                            <a class="btn btn-warning btn-sm" asp-action="EditarLibro" asp-route-id="@item.Isbn">Editar</a>
+                            <a class="btn btn-danger btn-sm" asp-action="EliminarLibro" asp-route-id="@item.Isbn">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

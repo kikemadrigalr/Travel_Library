@@ -11,14 +11,16 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <body>
-
+    
     <div class="container mt-5 pt-5">
+        <div class="text-center">
+            <h1>Travel Library</h1>
+        </div>
         <div class="row justify-content-center">
             <div class="col-6 col-xl-6 col-md-6">
-                <h1>Travel Library</h1>
                 <div class="card">
                     <div class="card-header">
-                        Iniciar Sesión
+                        <strong>Iniciar Sesión</strong>
                     </div>
                     <div class="card-body">
                         <form asp-controller="Inicio" asp-action="IniciarSesion" method="post">

@@ -2,9 +2,14 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
 using System.Security.Claims;
+using Travel_Library.Data;
 using Travel_Library.Models;
+using Microsoft.EntityFrameworkCore;
+using Travel_Library.Servicios.Contrato;
+
 
 namespace Travel_Library.Controllers
 {
@@ -13,11 +18,12 @@ namespace Travel_Library.Controllers
     [Authorize] //solo los usuarios autorizados pueden acceder a los metodos del controlador
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //contexto para conectar la base de datos a este modelo
+        private readonly ILibroService _libroService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILibroService libroService)
         {
-            _logger = logger;
+            _libroService = libroService;
         }
 
         public IActionResult Index()
@@ -33,12 +39,67 @@ namespace Travel_Library.Controllers
 
             ViewData["Usuario"] = nombreUsuario;
 
+            //obtener la lista de los libros regstrados en la BD
+            IEnumerable<Libro> listaLibros = _libroService.GetAllLibros();
+            
+            return View(listaLibros);
+        }
+
+        public IActionResult LibroDetalle(int id) 
+        {
+            //Libro libro = new Libro();
+            //if(id > 0)
+            //{
+            //    libro = _libroService.GetLibroDetalle(id);
+            //}
+            Libro libro = BuscarLibro(id);
+            return View("LibroDetalle", libro);
+        }
+
+        public IActionResult CrearLibro()
+        {
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult CrearLibro(Libro libro)
         {
-            return View();
+            _libroService.InsertLibro(libro);
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult EditarLibro(int id)
+        {
+            //Libro libro = new Libro();
+            //if (id > 0)
+            //{
+            //    libro = _libroService.GetLibroDetalle(id);
+            //}
+            Libro libro = BuscarLibro(id);
+            return View(libro);
+        }
+
+        [HttpPost]
+        public IActionResult EditarLibro(int id, Libro libro)
+        {
+            libro.Isbn = id;
+            _libroService.UpdateLibro(libro);
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult EliminarLibro(int id)
+        {
+            Libro libro = BuscarLibro(id);
+            return View(libro);
+        }
+
+        [HttpPost]
+        public IActionResult EliminarLibro(int id, Libro libro)
+        {
+            libro = BuscarLibro(id);
+;           _libroService.DeleteLibro(libro);
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> CerrarSesion()
@@ -49,10 +110,14 @@ namespace Travel_Library.Controllers
             return RedirectToAction("IniciarSesion", "Inicio");
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public Libro BuscarLibro(int id)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            Libro libro = new Libro();
+            if (id > 0)
+            {
+                libro = _libroService.GetLibroDetalle(id);
+            }
+            return libro;
         }
     }
 }
