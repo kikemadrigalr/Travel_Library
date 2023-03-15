@@ -22,6 +22,7 @@ builder.Services.AddDbContext<TravelLibraryContext>(options =>
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ILibroService, LibroService>();
 builder.Services.AddScoped<IAutorService, AutorService>();
+builder.Services.AddScoped<IEditorialService, EditorialService>();
 
 //Configurar las cookies para la autenticacion
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

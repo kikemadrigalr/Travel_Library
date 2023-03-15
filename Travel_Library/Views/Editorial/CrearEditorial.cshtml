@@ -1,32 +1,32 @@
 ﻿
 @{
-    ViewData["Title"] = "Crear Autor";
+    ViewData["Title"] = "Crear Editorial";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container mt-5 pt-5">
     <div class="text-center">
-        <h1 class="display-4">Crear Autor</h1>
+        <h1 class="display-4">Crear Editorial</h1>
     </div>
     <hr />
     <div class="row justify-content-center">
         <div class="col-6 col-xl-6 col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <strong>Crear Nuevo Autor</strong>
+                    <strong>Crear Nueva Editorial</strong>
                 </div>
                 <div class="card-body">
-                    <form asp-controller="Autor" asp-action="CrearAutor" method="post">
+                    <form asp-controller="Editorial" asp-action="CrearEditorial" method="post">
                         <div class="mb-3">
                             <label for="Nombre" class="form-label">Nombre</label>
                             <input type="text" class="form-control" id="Nombre" placeholder="Nombre" name="Nombre" required>
                         </div>
                         <div class="mb-3">
-                            <label for="Apellidos" class="form-label">Apellidos</label>
-                            <input type="text" class="form-control" id="Apellidos" name="Apellidos" placeholder="Apellidos" required>
+                            <label for="Sede" class="form-label">Sede</label>
+                            <input type="text" class="form-control" id="Sede" name="Sede" placeholder="Sede" required>
                         </div>
                         <div class="d-grid gap-2 mb-3">
-                            <button class="btn btn-primary" type="submit">Crear Autor</button>
+                            <button class="btn btn-primary" type="submit">Crear Editorial</button>
                             <a class="btn btn-warning" asp-action="Index">Volver</a>
                         </div>
                     </form>

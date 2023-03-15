@@ -1,0 +1,47 @@
+﻿@model List<Editorial>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Lista de Autores </h1>
+</div>
+<hr />
+
+<div class="card">
+    <div class="card-header">
+        <h5>Lista de Editoriales</h5>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm" asp-action="CrearEditorial" asp-controller="Editorial">Crear Nuevo</a>
+        <hr />
+
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Sede</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Nombre</td>
+                        <td>@item.Sede</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" asp-action="EditorialDetalle" asp-route-id="@item.Id">Detalle</a>
+                            <a class="btn btn-warning btn-sm" asp-action="EditarEditorial" asp-route-id="@item.Id">Editar</a>
+                            <a class="btn btn-danger btn-sm" asp-action="EliminarEditorial" asp-route-id="@item.Id">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

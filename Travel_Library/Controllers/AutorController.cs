@@ -23,6 +23,7 @@ namespace Travel_Library.Controllers
             return View(listaAutores);
         }
 
+        //Metodo para obtener el detalle de un autor basado en su ID
         public IActionResult AutorDetalle(int id)
         {
             Autor autor = BuscarAutor(id);
