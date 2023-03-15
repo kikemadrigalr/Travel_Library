@@ -24,6 +24,7 @@ namespace Travel_Library.Controllers
         public HomeController(ILibroService libroService)
         {
             _libroService = libroService;
+
         }
 
         public IActionResult Index()
@@ -47,11 +48,6 @@ namespace Travel_Library.Controllers
 
         public IActionResult LibroDetalle(int id) 
         {
-            //Libro libro = new Libro();
-            //if(id > 0)
-            //{
-            //    libro = _libroService.GetLibroDetalle(id);
-            //}
             Libro libro = BuscarLibro(id);
             return View("LibroDetalle", libro);
         }
@@ -64,7 +60,15 @@ namespace Travel_Library.Controllers
         [HttpPost]
         public IActionResult CrearLibro(Libro libro)
         {
-            _libroService.InsertLibro(libro);
+            try {
+                _libroService.InsertLibro(libro);
+            }catch(Exception ex)
+            {
+                ViewData["ErrorInsertar"] = "No se Pudo Insertar el Libro";
+                ViewData["InsertarExcepcion"] = ex.ToString();
+                return View(); 
+            }
+            
             return RedirectToAction("Index", "Home");
         }
 
